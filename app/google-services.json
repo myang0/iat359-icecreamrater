@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215030373337",
+    "project_id": "icecreamrater",
+    "storage_bucket": "icecreamrater.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215030373337:android:411c6f4a3431410d21d7c8",
+        "android_client_info": {
+          "package_name": "com.mwyang.icecreamrater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215030373337-ak83di6ahd6sipasa9et4h3icvr6afm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhDu0NCo3p2CTKLgRMciFGfznvLcmlYWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215030373337-ak83di6ahd6sipasa9et4h3icvr6afm4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
