@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mwyan/AndroidStudioProjects/IceCreamRater/app/src/main/res/layout/activity_add_rating.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/mwyan/AndroidStudioProjects/IceCreamRater/app/src/main/res/layout/activity_maps.xml" value="0.4" />
+        <entry key="..\:/Users/mwyan/AndroidStudioProjects/IceCreamRater/app/src/main/res/layout/activity_view_rating.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/mwyan/AndroidStudioProjects/IceCreamRater/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
       </map>
     </option>

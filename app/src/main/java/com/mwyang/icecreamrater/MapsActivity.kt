@@ -1,5 +1,6 @@
 package com.mwyang.icecreamrater
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -25,6 +26,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        binding.addButton.setOnClickListener {
+            navigateToAddPage()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -34,5 +39,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map.addMarker(MarkerOptions().position(vancouver).title("Marker in Vancouver"))
         map.moveCamera(CameraUpdateFactory.newLatLng(vancouver))
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(vancouver, 12.0f))
+    }
+
+    private fun navigateToAddPage() {
+        val intent = Intent(this, AddRatingActivity::class.java)
+
+        startActivity(intent)
+    }
+
+    private fun navigateToViewPage() {
+
     }
 }
