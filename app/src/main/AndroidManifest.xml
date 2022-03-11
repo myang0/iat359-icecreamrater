@@ -19,9 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IceCreamRater">
         <activity
-            android:name=".ViewRatingActivity"
-            android:exported="true" />
-        <activity
             android:name=".AddRatingActivity"
             android:exported="true" />
         <!--

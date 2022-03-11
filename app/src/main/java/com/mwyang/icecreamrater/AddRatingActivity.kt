@@ -1,22 +1,22 @@
 package com.mwyang.icecreamrater
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.mwyang.icecreamrater.database.AppDatabase
+import com.mwyang.icecreamrater.database.Shop
 import com.mwyang.icecreamrater.databinding.ActivityAddRatingBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AddRatingActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var map: GoogleMap
@@ -26,6 +26,8 @@ class AddRatingActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var rating: Int = -1
     private var stars: MutableList<ImageView> = mutableListOf<ImageView>()
+
+    var db: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,8 @@ class AddRatingActivity : AppCompatActivity(), OnMapReadyCallback {
 
             stars += star
         }
+
+        db = AppDatabase.getDatabase(this)
 
         binding.confirmButton.setOnClickListener { onConfirmButtonClicked() }
     }
@@ -109,7 +113,25 @@ class AddRatingActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.LENGTH_LONG
             ).show()
         } else {
-            Toast.makeText(this, "Rating Created!", Toast.LENGTH_SHORT).show()
+            val shop = Shop(
+                binding.shopNameInput.text.toString(),
+                location.latitude.toFloat(),
+                location.longitude.toFloat(),
+                rating,
+                binding.notesInput.text.toString()
+            )
+
+            CoroutineScope(Dispatchers.IO).launch {
+                createShop(shop)
+            }
+        }
+    }
+
+    private suspend fun createShop(shop: Shop) {
+        db!!.shopDao().insert(shop)
+
+        withContext(Dispatchers.Main) {
+            finish()
         }
     }
 }
