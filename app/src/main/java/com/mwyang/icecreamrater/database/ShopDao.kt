@@ -11,6 +11,9 @@ interface ShopDao {
     @Query("SELECT * FROM shop")
     fun getAll(): List<Shop>
 
+    @Query("SELECT * FROM shop WHERE id = :id")
+    fun getById(id: Int): Shop
+
     @Query("SELECT * FROM shop WHERE id in (:ids)")
     fun loadAllByIds(ids: IntArray): List<Shop>
 
