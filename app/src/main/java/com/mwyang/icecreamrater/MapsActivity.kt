@@ -85,18 +85,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
             var averageLatitude: Double = totalLatitude / shopList.size.toDouble()
             var averageLongitude: Double = totalLongitude / shopList.size.toDouble()
 
-            val averageLocation = LatLng(averageLatitude, averageLongitude)
+            val startingLocation: LatLng
 
-            map.moveCamera(CameraUpdateFactory.newLatLng(averageLocation))
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(averageLocation, 9.5f))
+            if (shopList.isEmpty()) {
+                startingLocation = LatLng(49.2577143,-123.1939434)
+            } else {
+                startingLocation = LatLng(averageLatitude, averageLongitude)
+            }
+
+            map.moveCamera(CameraUpdateFactory.newLatLng(startingLocation))
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(startingLocation, 9.5f))
         }
     }
 
     override fun onInfoWindowClick(marker: Marker) {
-        Log.i("info window", "${marker.tag}")
+        var intent = Intent(this, ViewRatingActivity::class.java)
+
+        intent.putExtra("shopId", "${marker.tag}")
+
+        startActivity(intent)
     }
 
     override fun onResume() {
+        if (::map.isInitialized) {
+            map.clear()
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             getShops()
         }

@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Ice Cream Rater</string>
-    <string name="title_activity_maps">Rating Map</string>
+    <string name="app_name">Ice Cream Shop Rater</string>
+    <string name="title_activity_maps">All Shops</string>
+    <string name="title_activity_view_rating">View Shop</string>
+    <string name="title_activity_add_rating">Add Shop</string>
 </resources>

@@ -12,7 +12,7 @@ interface ShopDao {
     fun getAll(): List<Shop>
 
     @Query("SELECT * FROM shop WHERE id = :id")
-    fun getById(id: Int): Shop
+    fun getById(id: Int): List<Shop>
 
     @Query("SELECT * FROM shop WHERE id in (:ids)")
     fun loadAllByIds(ids: IntArray): List<Shop>
